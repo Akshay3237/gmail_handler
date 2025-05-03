@@ -153,5 +153,38 @@ def list_emails(service):
     except HttpError as error:
         print(f'An error occurred: {error}')
 
-def total_number_of_mail(service,query):
-    print("\n🚀 Coming soon!")
+def total_number_of_mail(service, keyword):
+    """
+    Count and optionally delete all emails from a specific sender based on a keyword.
+
+    Parameters:
+    - service: Authorized Gmail API service instance.
+    - keyword: The sender's email or part of it to filter messages.
+    """
+    query = f'from:{keyword}'
+    next_page_token = None
+    total_found = 0
+
+    while True:
+        response = service.users().messages().list(
+            userId='me',
+            q=query,
+            pageToken=next_page_token
+        ).execute()
+
+        messages = response.get('messages', [])
+        if not messages:
+            break
+
+        for msg in messages:
+            msg_id = msg['id']
+            # Optional: Remove the line below if you don't want to delete
+            service.users().messages().delete(userId='me', id=msg_id).execute()
+            total_found += 1
+
+        print(f"✅ Counted {len(messages)} messages in this batch...")
+        next_page_token = response.get('nextPageToken')
+        if not next_page_token:
+            break
+
+    print(f"\n✅ Done! Total messages counted (and deleted): {total_found}")

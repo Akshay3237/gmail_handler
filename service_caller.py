@@ -16,7 +16,10 @@ def service_call(input_character):
             delete_emails_by_sender_keyword(service, keyword)
         case 'l':
             print("📊 Fetching total number of mails based on query...")
-            total_number_of_mail(service,"")
+            print('Enter keyword')
+            keyword = input("Please enter keyword: ")
+            print("You entered:", keyword)
+            total_number_of_mail(service,keyword)
         case 'a':
             print("⚠️ Deleting all mails...")
             delete_all_mails(service)
