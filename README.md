@@ -43,18 +43,19 @@ Before running this project, make sure you have the following installed:
 Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/Akshay3237/python-gmail-service.git
-cd python-gmail-service
-2. Authenticate with Gmail
+git clone https://github.com/Akshay3237/gmail_handler.git
+```
+
+2. Run the Service
+Execute the Python script to interact with Gmail and perform actions:
+```bash
+python -m gmail_handler
+```
+3. Authenticate with Gmail
 When you run the program, it will prompt you to authenticate using your Google account. The credentials will be saved locally for future access.
 
 Note: Make sure you have a credentials.json file (from Google Cloud) in the project directory for the Gmail authentication.
 
-3. Run the Service
-Execute the Python script to interact with Gmail and perform actions:
-
-
-python -m gmail_handler
 The service will prompt you to enter commands as follows:
 
 Enter 's': Generate the unique_senders.json file containing unique senders.
@@ -82,7 +83,7 @@ input_handler.py: Handles user input and command processing.
 
 gmail_service.py: Contains logic to interact with the Gmail API for email operations.
 
-main.py: The main entry point to run the service, where the user interacts with the terminal interface.
+__main__.py: The main entry point to run the service, where the user interacts with the terminal interface.
 
 License
 This project is licensed under the GNU General Public License Version 3 - see the LICENSE file for details.
